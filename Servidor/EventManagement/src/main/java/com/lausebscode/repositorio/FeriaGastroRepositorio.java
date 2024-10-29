@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface FeriaGastroRepositorio extends JpaRepository<FeriaGastro, Integer> {
-    Optional<FeriaGastro> findByNombre(String nombre);
+    Optional<FeriaGastro> findByNombreIgnoreCase(String nombre);
 
     List<FeriaGastro> findByPrecioLessThanEqual(double precioMaximo);
 }

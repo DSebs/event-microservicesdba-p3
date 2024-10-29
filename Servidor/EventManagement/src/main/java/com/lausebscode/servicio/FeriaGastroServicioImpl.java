@@ -30,7 +30,11 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
 
     @Override
     public FeriaGastro buscarPorNombre(String nombre) {
-        return feriaGastroRepositorio.findByNombre(nombre)
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede ser nulo o estar vacío");
+        }
+
+        return feriaGastroRepositorio.findByNombreIgnoreCase(nombre)
                 .orElseThrow(() -> new IllegalArgumentException("No se encontró la Feria Gastronómica con nombre: " + nombre));
     }
 
@@ -46,6 +50,9 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
 
     @Override
     public List<FeriaGastro> listarFeriasGastroMenorIgualPrecio(double precioMaximo) {
+        if (precioMaximo < 0) {
+            throw new IllegalArgumentException("El precio máximo no puede ser negativo");
+        }
         return feriaGastroRepositorio.findByPrecioLessThanEqual(precioMaximo);
     }
 
@@ -69,6 +76,9 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
         if (feriaGastro == null) {
             throw new IllegalArgumentException("La Feria Gastronómica no puede ser nula");
         }
+        if (feriaGastro.getId() <= 0) {
+            throw new IllegalArgumentException("El id de la cancion no puede ser null");
+        }
         if (feriaGastro.getNombre() == null || feriaGastro.getNombre().trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre de la Feria Gastronómica no puede estar vacío");
         }
@@ -78,19 +88,19 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
         if (feriaGastro.getFechaRealizacion() == null) {
             throw new IllegalArgumentException("La fecha de realización de la Feria Gastronómica no puede estar vacía");
         }
-        if (feriaGastro.getTipo() == null || feriaGastro.getTipo().trim().isEmpty()) {
-            throw new IllegalArgumentException("El tipo de la Feria Gastronómica no puede estar vacío");
-        }
     }
 
     private void validarUnicidad(FeriaGastro feriaGastro) {
-        if (feriaGastroRepositorio.findByNombre(feriaGastro.getNombre()).isPresent()) {
+        if (feriaGastroRepositorio.findByNombreIgnoreCase(feriaGastro.getNombre()).isPresent()) {
             throw new IllegalArgumentException("Ya existe una Feria Gastronómica con el nombre: " + feriaGastro.getNombre());
+        }
+        if (feriaGastroRepositorio.findById(feriaGastro.getId()).isPresent()) {
+            throw new IllegalArgumentException("Ya existe una Feria Gastronómica con el ID: " + feriaGastro.getId());
         }
     }
 
     private void validarUnicidadNombre(FeriaGastro feriaGastro) {
-        if (feriaGastroRepositorio.findByNombre(feriaGastro.getNombre()).isPresent()) {
+        if (feriaGastroRepositorio.findByNombreIgnoreCase(feriaGastro.getNombre()).isPresent()) {
             throw new IllegalArgumentException("Ya existe una Feria Gastronómica con el nombre: " + feriaGastro.getNombre());
         }
     }
