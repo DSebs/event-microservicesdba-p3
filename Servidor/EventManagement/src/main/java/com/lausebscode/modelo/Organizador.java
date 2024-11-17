@@ -3,20 +3,20 @@ package com.lausebscode.modelo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class FeriaGastro {
+public class Organizador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -25,15 +25,17 @@ public class FeriaGastro {
     private String nombre;
 
     @NotNull
-    @PositiveOrZero(message = "El precio no puede ser negativo")
-    private double precio;
+    @PositiveOrZero(message = "El presupuesto no puede ser negativo")
+    private double presupuesto;
 
-    @NotNull(message = "La fecha de realización no puede estar vacía")
-    private LocalDateTime fechaRealizacion;
+    @NotNull
+    @PastOrPresent(message = "La fecha de fundación no puede ser futura")
+    private LocalDateTime fundacion;
 
-    @NotBlank(message = "El tipo no puede estar vacío")
-    private String tipo;
+    @NotBlank(message = "El CEO no puede estar vacío")
+    private String ceo;
 
-    @OneToMany(mappedBy = "feriaGastro", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Organizador> organizadores;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "feria_gastro_id")
+    private FeriaGastro feriaGastro;
 }

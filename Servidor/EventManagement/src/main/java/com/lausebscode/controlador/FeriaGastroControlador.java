@@ -1,6 +1,7 @@
 package com.lausebscode.controlador;
 
 
+import com.lausebscode.dto.FeriaGastroDTO;
 import com.lausebscode.modelo.FeriaGastro;
 import com.lausebscode.servicio.FeriaGastroServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class FeriaGastroControlador {
     private FeriaGastroServicio feriaGastroServicio;
 
     @PostMapping("/crear")
-    public ResponseEntity<FeriaGastro> crearFeriaGastro(@RequestBody FeriaGastro feriaGastro) {
+    public ResponseEntity<FeriaGastroDTO> crearFeriaGastro(@RequestBody FeriaGastroDTO feriaGastroDTO) {
         try {
-            FeriaGastro feriaGastroCreada = feriaGastroServicio.crearFeriaGastro(feriaGastro);
+            FeriaGastroDTO feriaGastroCreada = feriaGastroServicio.crearFeriaGastro(feriaGastroDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(feriaGastroCreada);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
@@ -70,11 +71,11 @@ public class FeriaGastroControlador {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FeriaGastro> actualizarFeriaGastro(
+    public ResponseEntity<FeriaGastroDTO> actualizarFeriaGastro(
             @PathVariable("id") int id,
-            @RequestBody FeriaGastro nuevoFeriaGastro) {
+            @RequestBody FeriaGastroDTO feriaGastroDTO) {
         try {
-            FeriaGastro feriaGastroActualizada = feriaGastroServicio.actualizarFeriaGastro(id, nuevoFeriaGastro);
+            FeriaGastroDTO feriaGastroActualizada = feriaGastroServicio.actualizarFeriaGastro(id, feriaGastroDTO);
             return ResponseEntity.ok(feriaGastroActualizada);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
