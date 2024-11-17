@@ -88,7 +88,6 @@ const AgregarFeriaGastro = () => {
                     value={feria.tipo}
                     onChange={handleChange}
                     placeholder="Tipo de comida"
-                    required
                   />
                 </div>
                 <div className="d-grid">
