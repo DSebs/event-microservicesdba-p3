@@ -38,14 +38,14 @@
             eliminarFeriaToolStripMenuItem = new ToolStripMenuItem();
             listarFeriaToolStripMenuItem = new ToolStripMenuItem();
             siToolStripMenuItem = new ToolStripMenuItem();
-            ayudaToolStripMenuItem = new ToolStripMenuItem();
-            acercaDeToolStripMenuItem = new ToolStripMenuItem();
             agregarOrganizadorToolStripMenuItem = new ToolStripMenuItem();
             buscarOrganizadorPorIDToolStripMenuItem = new ToolStripMenuItem();
             buscarOrganizadorPorNombreToolStripMenuItem = new ToolStripMenuItem();
             actualizarOrganizadorToolStripMenuItem = new ToolStripMenuItem();
             eliminarOrganizadorToolStripMenuItem = new ToolStripMenuItem();
             listarOrganizadorToolStripMenuItem = new ToolStripMenuItem();
+            ayudaToolStripMenuItem = new ToolStripMenuItem();
+            acercaDeToolStripMenuItem = new ToolStripMenuItem();
             pictureBox = new PictureBox();
             label1 = new Label();
             menuStrip1.SuspendLayout();
@@ -55,8 +55,10 @@
             // menuStrip1
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] { feriaGastroToolStripMenuItem, siToolStripMenuItem, ayudaToolStripMenuItem });
+            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
+            menuStrip1.RightToLeft = RightToLeft.No;
             menuStrip1.Size = new Size(695, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
@@ -76,6 +78,7 @@
             agregarFeriaToolStripMenuItem.Name = "agregarFeriaToolStripMenuItem";
             agregarFeriaToolStripMenuItem.Size = new Size(333, 30);
             agregarFeriaToolStripMenuItem.Text = "Agregar Feria";
+            agregarFeriaToolStripMenuItem.Click += agregarFeriaToolStripMenuItem_Click;
             // 
             // buscarFeriaPorIDToolStripMenuItem
             // 
@@ -83,6 +86,7 @@
             buscarFeriaPorIDToolStripMenuItem.Name = "buscarFeriaPorIDToolStripMenuItem";
             buscarFeriaPorIDToolStripMenuItem.Size = new Size(333, 30);
             buscarFeriaPorIDToolStripMenuItem.Text = "Buscar Feria por ID";
+            buscarFeriaPorIDToolStripMenuItem.Click += buscarFeriaPorIDToolStripMenuItem_Click;
             // 
             // buscarFeriaPorNombreToolStripMenuItem
             // 
@@ -90,6 +94,7 @@
             buscarFeriaPorNombreToolStripMenuItem.Name = "buscarFeriaPorNombreToolStripMenuItem";
             buscarFeriaPorNombreToolStripMenuItem.Size = new Size(333, 30);
             buscarFeriaPorNombreToolStripMenuItem.Text = "Buscar Feria por nombre";
+            buscarFeriaPorNombreToolStripMenuItem.Click += buscarFeriaPorNombreToolStripMenuItem_Click;
             // 
             // actualizarFeriaToolStripMenuItem
             // 
@@ -97,6 +102,7 @@
             actualizarFeriaToolStripMenuItem.Name = "actualizarFeriaToolStripMenuItem";
             actualizarFeriaToolStripMenuItem.Size = new Size(333, 30);
             actualizarFeriaToolStripMenuItem.Text = "Actualizar Feria";
+            actualizarFeriaToolStripMenuItem.Click += actualizarFeriaToolStripMenuItem_Click;
             // 
             // eliminarFeriaToolStripMenuItem
             // 
@@ -104,6 +110,7 @@
             eliminarFeriaToolStripMenuItem.Name = "eliminarFeriaToolStripMenuItem";
             eliminarFeriaToolStripMenuItem.Size = new Size(333, 30);
             eliminarFeriaToolStripMenuItem.Text = "Eliminar Feria";
+            eliminarFeriaToolStripMenuItem.Click += eliminarFeriaToolStripMenuItem_Click;
             // 
             // listarFeriaToolStripMenuItem
             // 
@@ -111,6 +118,7 @@
             listarFeriaToolStripMenuItem.Name = "listarFeriaToolStripMenuItem";
             listarFeriaToolStripMenuItem.Size = new Size(333, 30);
             listarFeriaToolStripMenuItem.Text = "Listar Feria";
+            listarFeriaToolStripMenuItem.Click += listarFeriaToolStripMenuItem_Click;
             // 
             // siToolStripMenuItem
             // 
@@ -120,22 +128,6 @@
             siToolStripMenuItem.Name = "siToolStripMenuItem";
             siToolStripMenuItem.Size = new Size(153, 29);
             siToolStripMenuItem.Text = "Organizador";
-            // 
-            // ayudaToolStripMenuItem
-            // 
-            ayudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { acercaDeToolStripMenuItem });
-            ayudaToolStripMenuItem.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ayudaToolStripMenuItem.ForeColor = Color.FromArgb(217, 122, 6);
-            ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            ayudaToolStripMenuItem.Size = new Size(93, 29);
-            ayudaToolStripMenuItem.Text = "Ayuda";
-            // 
-            // acercaDeToolStripMenuItem
-            // 
-            acercaDeToolStripMenuItem.ForeColor = Color.FromArgb(13, 55, 113);
-            acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            acercaDeToolStripMenuItem.Size = new Size(194, 30);
-            acercaDeToolStripMenuItem.Text = "Acerca De";
             // 
             // agregarOrganizadorToolStripMenuItem
             // 
@@ -179,6 +171,22 @@
             listarOrganizadorToolStripMenuItem.Size = new Size(413, 30);
             listarOrganizadorToolStripMenuItem.Text = "Listar Organizador";
             // 
+            // ayudaToolStripMenuItem
+            // 
+            ayudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { acercaDeToolStripMenuItem });
+            ayudaToolStripMenuItem.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ayudaToolStripMenuItem.ForeColor = Color.FromArgb(217, 122, 6);
+            ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            ayudaToolStripMenuItem.Size = new Size(93, 29);
+            ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // acercaDeToolStripMenuItem
+            // 
+            acercaDeToolStripMenuItem.ForeColor = Color.FromArgb(13, 55, 113);
+            acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            acercaDeToolStripMenuItem.Size = new Size(194, 30);
+            acercaDeToolStripMenuItem.Text = "Acerca De";
+            // 
             // pictureBox
             // 
             pictureBox.BackColor = Color.White;
@@ -212,6 +220,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainFrame";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
