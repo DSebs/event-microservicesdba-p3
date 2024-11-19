@@ -27,22 +27,15 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
     @Override
     @Transactional
     public FeriaGastroDTO crearFeriaGastro(FeriaGastroDTO feriaGastroDTO) {
-        // Convertir el DTO a entidad
         FeriaGastro feriaGastro = convertirDTOaEntidad(feriaGastroDTO);
-
-        // Validaciones
         validarFeriaGastro(feriaGastro);
         validarUnicidad(feriaGastro);
-
-        // Guardar la feria gastronómica (sin organizadores asociados aún)
         FeriaGastro feriaGastroGuardada = feriaGastroRepositorio.save(feriaGastro);
 
-        // Verificar si hay organizadores para asociar
+
         if (feriaGastroDTO.getOrganizadorIds() != null && !feriaGastroDTO.getOrganizadorIds().isEmpty()) {
-            // Obtener los organizadores por sus IDs
             List<Organizador> organizadores = organizadorRepositorio.findAllById(feriaGastroDTO.getOrganizadorIds());
 
-            // Validar que los organizadores no estén ya asociados a otras ferias
             for (Organizador organizador : organizadores) {
                 if (organizador.getFeriaGastro() != null) {
                     throw new IllegalArgumentException(
@@ -51,17 +44,16 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
                 }
             }
 
-            // Actualizar la lista de organizadores sin reemplazarla
             feriaGastroGuardada.getOrganizadores().clear();
             feriaGastroGuardada.getOrganizadores().addAll(organizadores);
 
-            // Actualizar la referencia inversa de cada organizador
             organizadores.forEach(org -> org.setFeriaGastro(feriaGastroGuardada));
         }
 
         // Retornar el DTO de la feria creada
         return convertirEntidadaDTO(feriaGastroGuardada);
     }
+
     @Override
     public FeriaGastro buscarPorId(int id) {
         return feriaGastroRepositorio.findById(id)
@@ -78,22 +70,29 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
                 .orElseThrow(() -> new IllegalArgumentException("No se encontró la Feria Gastronómica con nombre: " + nombre));
     }
 
-    @Override
-    public void eliminarFeriaGastro(FeriaGastro feriaGastro) {
+    public void eliminarFeriaGastro(int id) {
+        FeriaGastro feriaGastro = feriaGastroRepositorio.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No se encontró la Feria Gastronómica con ID: " + id));
+
+        feriaGastro.getOrganizadores().forEach(organizador -> organizador.setFeriaGastro(null));
         feriaGastroRepositorio.delete(feriaGastro);
     }
 
     @Override
-    public List<FeriaGastro> listarTodasLasFeriasGastro() {
-        return feriaGastroRepositorio.findAll();
+    public List<FeriaGastroDTO> listarTodasLasFeriasGastro() {
+        return feriaGastroRepositorio.findAll().stream()
+                .map(this::convertirEntidadaDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<FeriaGastro> listarFeriasGastroMenorIgualPrecio(double precioMaximo) {
+    public List<FeriaGastroDTO> listarFeriasGastroMenorIgualPrecio(double precioMaximo) {
         if (precioMaximo < 0) {
             throw new IllegalArgumentException("El precio máximo no puede ser negativo");
         }
-        return feriaGastroRepositorio.findByPrecioLessThanEqual(precioMaximo);
+        return feriaGastroRepositorio.findByPrecioLessThanEqual(precioMaximo).stream()
+                .map(this::convertirEntidadaDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -101,27 +100,35 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
     public FeriaGastroDTO actualizarFeriaGastro(int id, FeriaGastroDTO feriaGastroDTO) {
         FeriaGastro feriaGastroExistente = buscarPorId(id);
 
-        // Actualizar campos básicos
         feriaGastroExistente.setNombre(feriaGastroDTO.getNombre());
         feriaGastroExistente.setPrecio(feriaGastroDTO.getPrecio());
         feriaGastroExistente.setFechaRealizacion(feriaGastroDTO.getFechaRealizacion());
         feriaGastroExistente.setTipo(feriaGastroDTO.getTipo());
 
-        // Actualizar organizadores
-        if (feriaGastroDTO.getOrganizadorIds() != null) {
-            // Desasociar organizadores actuales
+        if (feriaGastroExistente.getOrganizadores() != null) {
             feriaGastroExistente.getOrganizadores().forEach(org -> org.setFeriaGastro(null));
+            feriaGastroExistente.getOrganizadores().clear();
+        }
 
-            // Asociar nuevos organizadores
-            List<Organizador> nuevosOrganizadores = organizadorRepositorio
-                    .findAllById(feriaGastroDTO.getOrganizadorIds());
-            nuevosOrganizadores.forEach(org -> org.setFeriaGastro(feriaGastroExistente));
-            feriaGastroExistente.setOrganizadores(nuevosOrganizadores);
+        if (feriaGastroDTO.getOrganizadorIds() != null && !feriaGastroDTO.getOrganizadorIds().isEmpty()) {
+            List<Organizador> organizadores = organizadorRepositorio.findAllById(feriaGastroDTO.getOrganizadorIds());
+
+            for (Organizador organizador : organizadores) {
+                if (organizador.getFeriaGastro() != null &&
+                        organizador.getFeriaGastro().getId() != feriaGastroExistente.getId()) {
+                    throw new IllegalArgumentException(
+                            "El organizador con ID " + organizador.getId() + " ya está asociado a otra feria gastronómica."
+                    );
+                }
+            }
+            organizadores.forEach(org -> org.setFeriaGastro(feriaGastroExistente));
+            feriaGastroExistente.getOrganizadores().addAll(organizadores);
         }
 
         FeriaGastro feriaGastroActualizada = feriaGastroRepositorio.save(feriaGastroExistente);
         return convertirEntidadaDTO(feriaGastroActualizada);
     }
+
 
     private void validarFeriaGastro(FeriaGastro feriaGastro) {
         if (feriaGastro == null) {

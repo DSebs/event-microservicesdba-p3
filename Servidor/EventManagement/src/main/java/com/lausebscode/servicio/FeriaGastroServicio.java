@@ -8,8 +8,8 @@ public interface FeriaGastroServicio {
     FeriaGastroDTO crearFeriaGastro(FeriaGastroDTO feriaGastroDTO);
     FeriaGastro buscarPorId(int id);
     FeriaGastro buscarPorNombre(String nombre);
-    void eliminarFeriaGastro(FeriaGastro feriaGastro);
-    List<FeriaGastro> listarTodasLasFeriasGastro();
-    List<FeriaGastro> listarFeriasGastroMenorIgualPrecio(double precioMaximo);
+    void eliminarFeriaGastro(int id);
+    List<FeriaGastroDTO> listarTodasLasFeriasGastro();
+    List<FeriaGastroDTO> listarFeriasGastroMenorIgualPrecio(double precioMaximo);
     FeriaGastroDTO actualizarFeriaGastro(int id, FeriaGastroDTO feriaGastroDTO);
 }

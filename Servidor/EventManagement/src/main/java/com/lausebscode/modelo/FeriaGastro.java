@@ -1,5 +1,6 @@
 package com.lausebscode.modelo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
@@ -34,6 +35,7 @@ public class FeriaGastro {
     @NotBlank(message = "El tipo no puede estar vacío")
     private String tipo;
 
-    @OneToMany(mappedBy = "feriaGastro", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "feriaGastro", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = false)
+    @JsonManagedReference
     private List<Organizador> organizadores;
 }

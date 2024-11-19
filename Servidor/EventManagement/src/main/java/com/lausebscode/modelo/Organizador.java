@@ -1,5 +1,6 @@
 package com.lausebscode.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
@@ -37,5 +38,6 @@ public class Organizador {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feria_gastro_id")
+    @JsonBackReference
     private FeriaGastro feriaGastro;
 }

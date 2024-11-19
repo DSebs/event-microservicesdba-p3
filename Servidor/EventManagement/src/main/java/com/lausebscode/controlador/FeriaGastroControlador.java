@@ -48,27 +48,30 @@ public class FeriaGastroControlador {
         }
     }
 
-    @DeleteMapping("/eliminar")
-    public ResponseEntity<Void> eliminarFeriaGastro(@RequestBody FeriaGastro feriaGastro) {
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> eliminarFeriaGastro(@PathVariable int id) {
         try {
-            feriaGastroServicio.eliminarFeriaGastro(feriaGastro);
+            feriaGastroServicio.eliminarFeriaGastro(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<FeriaGastro>> listarTodasLasFeriasGastro() {
-        List<FeriaGastro> feriasGastro = feriaGastroServicio.listarTodasLasFeriasGastro();
+    public ResponseEntity<List<FeriaGastroDTO>> listarTodasLasFeriasGastro() {
+        List<FeriaGastroDTO> feriasGastro = feriaGastroServicio.listarTodasLasFeriasGastro();
         return ResponseEntity.ok(feriasGastro);
     }
 
     @GetMapping("/listar/precio/{precioMaximo}")
-    public ResponseEntity<List<FeriaGastro>> listarFeriasGastroMenorIgualPrecio(@PathVariable double precioMaximo) {
-        List<FeriaGastro> feriasGastro = feriaGastroServicio.listarFeriasGastroMenorIgualPrecio(precioMaximo);
+    public ResponseEntity<List<FeriaGastroDTO>> listarFeriasGastroMenorIgualPrecio(@PathVariable double precioMaximo) {
+        List<FeriaGastroDTO> feriasGastro = feriaGastroServicio.listarFeriasGastroMenorIgualPrecio(precioMaximo);
         return ResponseEntity.ok(feriasGastro);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<FeriaGastroDTO> actualizarFeriaGastro(
