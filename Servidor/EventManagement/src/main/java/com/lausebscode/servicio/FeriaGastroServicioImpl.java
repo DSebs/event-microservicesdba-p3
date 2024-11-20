@@ -54,20 +54,29 @@ public class FeriaGastroServicioImpl implements FeriaGastroServicio {
         return convertirEntidadaDTO(feriaGastroGuardada);
     }
 
-    @Override
     public FeriaGastro buscarPorId(int id) {
         return feriaGastroRepositorio.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("No se encontró la Feria Gastronómica con ID: " + id));
     }
 
     @Override
-    public FeriaGastro buscarPorNombre(String nombre) {
+    public FeriaGastroDTO buscarPorIdDTO(int id) {
+        FeriaGastro feria = feriaGastroRepositorio.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No se encontró la Feria Gastronómica con ID: " + id));
+        return convertirEntidadaDTO(feria);
+    }
+
+
+    @Override
+    public FeriaGastroDTO buscarPorNombre(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede ser nulo o estar vacío");
         }
 
-        return feriaGastroRepositorio.findByNombreIgnoreCase(nombre)
+       FeriaGastro feria = feriaGastroRepositorio.findByNombreIgnoreCase(nombre)
                 .orElseThrow(() -> new IllegalArgumentException("No se encontró la Feria Gastronómica con nombre: " + nombre));
+
+        return convertirEntidadaDTO(feria);
     }
 
     public void eliminarFeriaGastro(int id) {

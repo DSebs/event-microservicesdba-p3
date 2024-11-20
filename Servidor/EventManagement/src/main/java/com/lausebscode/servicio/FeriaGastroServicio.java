@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface FeriaGastroServicio {
     FeriaGastroDTO crearFeriaGastro(FeriaGastroDTO feriaGastroDTO);
-    FeriaGastro buscarPorId(int id);
-    FeriaGastro buscarPorNombre(String nombre);
+    FeriaGastroDTO buscarPorIdDTO(int id);
+    FeriaGastroDTO buscarPorNombre(String nombre);
     void eliminarFeriaGastro(int id);
     List<FeriaGastroDTO> listarTodasLasFeriasGastro();
     List<FeriaGastroDTO> listarFeriasGastroMenorIgualPrecio(double precioMaximo);

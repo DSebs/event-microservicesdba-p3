@@ -29,9 +29,9 @@ public class FeriaGastroControlador {
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<FeriaGastro> buscarFeriaGastroId(@PathVariable int id) {
+    public ResponseEntity<FeriaGastroDTO> buscarFeriaGastroId(@PathVariable int id) {
         try {
-            FeriaGastro feriaGastro = feriaGastroServicio.buscarPorId(id);
+            FeriaGastroDTO feriaGastro = feriaGastroServicio.buscarPorIdDTO(id);
             return ResponseEntity.ok(feriaGastro);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
@@ -39,9 +39,9 @@ public class FeriaGastroControlador {
     }
 
     @GetMapping("/buscar/nombre/{nombre}")
-    public ResponseEntity<FeriaGastro> buscarFeriaGastroNombre(@PathVariable String nombre) {
+    public ResponseEntity<FeriaGastroDTO> buscarFeriaGastroNombre(@PathVariable String nombre) {
         try {
-            FeriaGastro feriaGastro = feriaGastroServicio.buscarPorNombre(nombre);
+            FeriaGastroDTO feriaGastro = feriaGastroServicio.buscarPorNombre(nombre);
             return ResponseEntity.ok(feriaGastro);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();

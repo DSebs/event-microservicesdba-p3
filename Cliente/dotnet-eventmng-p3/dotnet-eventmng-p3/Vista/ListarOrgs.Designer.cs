@@ -53,7 +53,6 @@
             // 
             // txtFiltroInicial
             // 
-            txtFiltroInicial.Enabled = false;
             txtFiltroInicial.Location = new Point(162, 52);
             txtFiltroInicial.Name = "txtFiltroInicial";
             txtFiltroInicial.Size = new Size(145, 23);
