@@ -42,7 +42,7 @@ namespace dotnet_eventmng_p3.Servicio
 
         public Organizador BuscarOrganizadorPorId(int id)
         {
-            var request = new RestRequest($"/buscar/id/{id}", Method.Get);
+            var request = new RestRequest($"/buscar/{id}", Method.Get);
             var response = _client.Execute<Organizador>(request);
             if (response.IsSuccessful)
             {
@@ -51,7 +51,7 @@ namespace dotnet_eventmng_p3.Servicio
             }
             else
             {
-                throw new Exception("Error al obetener los datos de la cancion");
+                throw new Exception("Error al obetener los datos del organizador");
             }
         }
 
@@ -66,7 +66,7 @@ namespace dotnet_eventmng_p3.Servicio
             }
             else
             {
-                throw new Exception("Error al obetener los datos de la cancion");
+                throw new Exception("Error al obtener los datos del organizador");
             }
         }
 
@@ -131,7 +131,7 @@ namespace dotnet_eventmng_p3.Servicio
 
         public List<Organizador> ListarOrganizadoresInicial(string inicial)
         {
-            var request = new RestRequest($"/listar/duracion/{inicial}", Method.Get);
+            var request = new RestRequest($"/listar/inicial/{inicial}", Method.Get);
             var response = _client.Execute(request);
             if (response.IsSuccessful)
             {

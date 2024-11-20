@@ -42,7 +42,7 @@ namespace dotnet_eventmng_p3.Servicio
 
         public FeriaGastro BuscarFeriaPorId(int id)
         {
-            var request = new RestRequest($"/buscar/id/{id}", Method.Get);
+            var request = new RestRequest($"/buscar/{id}", Method.Get);
             var response = _client.Execute<FeriaGastro>(request);
             if (response.IsSuccessful)
             {

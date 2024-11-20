@@ -85,7 +85,6 @@
             // 
             // txtFiltroPrecioMax
             // 
-            txtFiltroPrecioMax.Enabled = false;
             txtFiltroPrecioMax.Location = new Point(162, 52);
             txtFiltroPrecioMax.Name = "txtFiltroPrecioMax";
             txtFiltroPrecioMax.Size = new Size(145, 23);
