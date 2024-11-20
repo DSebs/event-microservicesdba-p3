@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Modelo\" />
-    <Folder Include="Servicio\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="RestSharp" Version="112.1.0" />
   </ItemGroup>
 
   <ItemGroup>

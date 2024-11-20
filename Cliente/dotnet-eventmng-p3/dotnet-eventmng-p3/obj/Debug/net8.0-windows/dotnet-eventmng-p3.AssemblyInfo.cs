@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dotnet-eventmng-p3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+116a5e3addecac5c7c1f7cf073d49d88ae885e42")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69565d5e1b58ec545c090d73a79598f5a7f774ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("dotnet-eventmng-p3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dotnet-eventmng-p3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
