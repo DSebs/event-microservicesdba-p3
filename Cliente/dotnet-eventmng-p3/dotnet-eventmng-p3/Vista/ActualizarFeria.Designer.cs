@@ -81,6 +81,7 @@
             btnActualizar.TabIndex = 13;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // dtpFecha
             // 
@@ -214,6 +215,7 @@
             btnBuscar.TabIndex = 17;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // lblTitulo
             // 

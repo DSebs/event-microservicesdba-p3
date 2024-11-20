@@ -77,6 +77,7 @@
             btnBuscar.TabIndex = 20;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // panelPrincipal
             // 
@@ -119,6 +120,7 @@
             btnEliminar.TabIndex = 13;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // txtOrganizadores
             // 

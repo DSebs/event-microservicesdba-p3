@@ -26,3 +26,10 @@ F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-ev
 F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.ActualizarFeria.resources
 F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.EliminarFeria.resources
 F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.ListarFerias.resources
+F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.ActualizarOrg.resources
+F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.AgregarOrganizador.resources
+F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.BuscarOrgId.resources
+F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.BuscarOrgNombre.resources
+F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.EliminarOrg.resources
+F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.ListarOrgs.resources
+F:\Uni\EventMNGP3\event-microservicesdba-p3\Cliente\dotnet-eventmng-p3\dotnet-eventmng-p3\obj\Debug\net8.0-windows\dotnet_eventmng_p3.Vista.AcercaDe.resources

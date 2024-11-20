@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Vista\AcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Vista\ActualizarFeria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -28,7 +31,13 @@
     <Compile Update="Vista\EliminarFeria.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Vista\EliminarOrg.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Vista\ListarFerias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Vista\ListarOrgs.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Vista\MainFrame.cs">

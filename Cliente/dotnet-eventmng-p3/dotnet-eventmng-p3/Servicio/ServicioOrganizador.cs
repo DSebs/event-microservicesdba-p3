@@ -129,9 +129,9 @@ namespace dotnet_eventmng_p3.Servicio
             }
         }
 
-        public List<Organizador> ListarOrganizadoresMin(string duracionMin)
+        public List<Organizador> ListarOrganizadoresInicial(string inicial)
         {
-            var request = new RestRequest($"/listar/duracion/{duracionMin}", Method.Get);
+            var request = new RestRequest($"/listar/duracion/{inicial}", Method.Get);
             var response = _client.Execute(request);
             if (response.IsSuccessful)
             {
@@ -140,7 +140,7 @@ namespace dotnet_eventmng_p3.Servicio
             }
             else
             {
-                throw new Exception($"Error al listar organizadores con... {duracionMin}: {response.ErrorMessage}");
+                throw new Exception($"Error al listar organizadores con... {inicial}: {response.ErrorMessage}");
             }
         }
     }

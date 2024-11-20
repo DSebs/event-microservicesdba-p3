@@ -135,6 +135,7 @@
             agregarOrganizadorToolStripMenuItem.Name = "agregarOrganizadorToolStripMenuItem";
             agregarOrganizadorToolStripMenuItem.Size = new Size(413, 30);
             agregarOrganizadorToolStripMenuItem.Text = "Agregar Organizador";
+            agregarOrganizadorToolStripMenuItem.Click += agregarOrganizadorToolStripMenuItem_Click;
             // 
             // buscarOrganizadorPorIDToolStripMenuItem
             // 
@@ -142,6 +143,7 @@
             buscarOrganizadorPorIDToolStripMenuItem.Name = "buscarOrganizadorPorIDToolStripMenuItem";
             buscarOrganizadorPorIDToolStripMenuItem.Size = new Size(413, 30);
             buscarOrganizadorPorIDToolStripMenuItem.Text = "Buscar Organizador por ID";
+            buscarOrganizadorPorIDToolStripMenuItem.Click += buscarOrganizadorPorIDToolStripMenuItem_Click;
             // 
             // buscarOrganizadorPorNombreToolStripMenuItem
             // 
@@ -149,6 +151,7 @@
             buscarOrganizadorPorNombreToolStripMenuItem.Name = "buscarOrganizadorPorNombreToolStripMenuItem";
             buscarOrganizadorPorNombreToolStripMenuItem.Size = new Size(413, 30);
             buscarOrganizadorPorNombreToolStripMenuItem.Text = "Buscar Organizador por nombre";
+            buscarOrganizadorPorNombreToolStripMenuItem.Click += buscarOrganizadorPorNombreToolStripMenuItem_Click;
             // 
             // actualizarOrganizadorToolStripMenuItem
             // 
@@ -156,6 +159,7 @@
             actualizarOrganizadorToolStripMenuItem.Name = "actualizarOrganizadorToolStripMenuItem";
             actualizarOrganizadorToolStripMenuItem.Size = new Size(413, 30);
             actualizarOrganizadorToolStripMenuItem.Text = "Actualizar Organizador";
+            actualizarOrganizadorToolStripMenuItem.Click += actualizarOrganizadorToolStripMenuItem_Click;
             // 
             // eliminarOrganizadorToolStripMenuItem
             // 
@@ -163,6 +167,7 @@
             eliminarOrganizadorToolStripMenuItem.Name = "eliminarOrganizadorToolStripMenuItem";
             eliminarOrganizadorToolStripMenuItem.Size = new Size(413, 30);
             eliminarOrganizadorToolStripMenuItem.Text = "Eliminar Organizador";
+            eliminarOrganizadorToolStripMenuItem.Click += eliminarOrganizadorToolStripMenuItem_Click;
             // 
             // listarOrganizadorToolStripMenuItem
             // 
@@ -170,6 +175,7 @@
             listarOrganizadorToolStripMenuItem.Name = "listarOrganizadorToolStripMenuItem";
             listarOrganizadorToolStripMenuItem.Size = new Size(413, 30);
             listarOrganizadorToolStripMenuItem.Text = "Listar Organizador";
+            listarOrganizadorToolStripMenuItem.Click += listarOrganizadorToolStripMenuItem_Click;
             // 
             // ayudaToolStripMenuItem
             // 
@@ -186,6 +192,7 @@
             acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
             acercaDeToolStripMenuItem.Size = new Size(194, 30);
             acercaDeToolStripMenuItem.Text = "Acerca De";
+            acercaDeToolStripMenuItem.Click += acercaDeToolStripMenuItem_Click;
             // 
             // pictureBox
             // 

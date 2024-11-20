@@ -1,6 +1,6 @@
 ﻿namespace dotnet_eventmng_p3.Vista
 {
-    partial class ListarFerias
+    partial class ListarOrgs
     {
         /// <summary>
         /// Required designer variable.
@@ -28,69 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblTitulo = new Label();
-            tblFerias = new DataGridView();
-            btnListar = new Button();
             panel1 = new Panel();
-            txtFiltroPrecioMax = new TextBox();
+            txtFiltroInicial = new TextBox();
             btnFiltrar = new Button();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)tblFerias).BeginInit();
+            btnListar = new Button();
+            tblOrganizaciones = new DataGridView();
+            lblTitulo = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tblOrganizaciones).BeginInit();
             SuspendLayout();
-            // 
-            // lblTitulo
-            // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.ForeColor = Color.FromArgb(2, 31, 85);
-            lblTitulo.Location = new Point(181, 42);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(220, 44);
-            lblTitulo.TabIndex = 2;
-            lblTitulo.Text = "Listar Ferias";
-            // 
-            // tblFerias
-            // 
-            tblFerias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblFerias.Location = new Point(34, 107);
-            tblFerias.Name = "tblFerias";
-            tblFerias.Size = new Size(525, 224);
-            tblFerias.TabIndex = 3;
-            // 
-            // btnListar
-            // 
-            btnListar.BackColor = Color.FromArgb(13, 55, 113);
-            btnListar.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnListar.ForeColor = Color.White;
-            btnListar.Location = new Point(238, 351);
-            btnListar.Name = "btnListar";
-            btnListar.Size = new Size(125, 35);
-            btnListar.TabIndex = 14;
-            btnListar.Text = "Listar";
-            btnListar.UseVisualStyleBackColor = false;
-            btnListar.Click += btnListar_Click;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(240, 244, 255);
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(txtFiltroPrecioMax);
+            panel1.Controls.Add(txtFiltroInicial);
             panel1.Controls.Add(btnFiltrar);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(114, 406);
+            panel1.Location = new Point(115, 401);
             panel1.Name = "panel1";
             panel1.Size = new Size(373, 86);
-            panel1.TabIndex = 15;
+            panel1.TabIndex = 19;
             // 
-            // txtFiltroPrecioMax
+            // txtFiltroInicial
             // 
-            txtFiltroPrecioMax.Enabled = false;
-            txtFiltroPrecioMax.Location = new Point(162, 52);
-            txtFiltroPrecioMax.Name = "txtFiltroPrecioMax";
-            txtFiltroPrecioMax.Size = new Size(145, 23);
-            txtFiltroPrecioMax.TabIndex = 17;
-            txtFiltroPrecioMax.TextChanged += txtOrganizadores_TextChanged;
+            txtFiltroInicial.Enabled = false;
+            txtFiltroInicial.Location = new Point(162, 52);
+            txtFiltroInicial.Name = "txtFiltroInicial";
+            txtFiltroInicial.Size = new Size(145, 23);
+            txtFiltroInicial.TabIndex = 17;
             // 
             // btnFiltrar
             // 
@@ -110,39 +77,71 @@
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(2, 31, 85);
-            label1.Location = new Point(87, 13);
+            label1.Location = new Point(123, 12);
             label1.Name = "label1";
-            label1.Size = new Size(200, 19);
+            label1.Size = new Size(127, 19);
             label1.TabIndex = 16;
-            label1.Text = "Listar por precio maximo";
+            label1.Text = "Listar por inicial";
             // 
-            // ListarFerias
+            // btnListar
+            // 
+            btnListar.BackColor = Color.FromArgb(13, 55, 113);
+            btnListar.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnListar.ForeColor = Color.White;
+            btnListar.Location = new Point(239, 346);
+            btnListar.Name = "btnListar";
+            btnListar.Size = new Size(125, 35);
+            btnListar.TabIndex = 18;
+            btnListar.Text = "Listar";
+            btnListar.UseVisualStyleBackColor = false;
+            btnListar.Click += btnListar_Click;
+            // 
+            // tblOrganizaciones
+            // 
+            tblOrganizaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblOrganizaciones.Location = new Point(35, 102);
+            tblOrganizaciones.Name = "tblOrganizaciones";
+            tblOrganizaciones.Size = new Size(525, 224);
+            tblOrganizaciones.TabIndex = 17;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.FromArgb(2, 31, 85);
+            lblTitulo.Location = new Point(115, 37);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(380, 44);
+            lblTitulo.TabIndex = 16;
+            lblTitulo.Text = "Listar Organizadores";
+            // 
+            // ListarOrgs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(594, 524);
             Controls.Add(panel1);
             Controls.Add(btnListar);
-            Controls.Add(tblFerias);
+            Controls.Add(tblOrganizaciones);
             Controls.Add(lblTitulo);
-            Name = "ListarFerias";
+            Name = "ListarOrgs";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ListarFerias";
-            ((System.ComponentModel.ISupportInitialize)tblFerias).EndInit();
+            Text = "ListarOrgs";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tblOrganizaciones).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblTitulo;
-        private DataGridView tblFerias;
-        private Button btnListar;
         private Panel panel1;
+        private TextBox txtFiltroInicial;
         private Button btnFiltrar;
         private Label label1;
-        private TextBox txtFiltroPrecioMax;
+        private Button btnListar;
+        private DataGridView tblOrganizaciones;
+        private Label lblTitulo;
     }
 }

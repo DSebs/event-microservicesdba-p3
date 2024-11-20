@@ -88,6 +88,7 @@
             btnBuscar.TabIndex = 18;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // panelPrincipal
             // 
