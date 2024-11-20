@@ -1,2 +1,7 @@
 # Ignorar la carpeta de configuración de Visual Studio
 .vs/
+
+# Ignorar carpetas bin y obj
+bin/
+obj/
+/Cliente/dotnet-eventmng-p3/dotnet-eventmng-p3/bin
