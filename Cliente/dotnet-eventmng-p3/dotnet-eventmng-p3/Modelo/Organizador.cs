@@ -13,6 +13,7 @@ namespace dotnet_eventmng_p3.Modelo
         public double presupuesto { get; set; }
         public DateTime fundacion { get; set; }
         public string ceo { get; set; }
+        public int feriaGastroId {  get; set; }
 
         public Organizador(int id, string nombre, double presupuesto, DateTime fundacion, string ceo)
         {

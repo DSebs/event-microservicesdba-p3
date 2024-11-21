@@ -52,6 +52,7 @@
             // 
             // tblFerias
             // 
+            tblFerias.BackgroundColor = Color.White;
             tblFerias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblFerias.Location = new Point(34, 107);
             tblFerias.Name = "tblFerias";
@@ -119,6 +120,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(594, 524);
             Controls.Add(panel1);
             Controls.Add(btnListar);

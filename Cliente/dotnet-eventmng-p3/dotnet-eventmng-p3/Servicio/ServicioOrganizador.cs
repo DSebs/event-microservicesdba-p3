@@ -94,13 +94,7 @@ namespace dotnet_eventmng_p3.Servicio
 
         public void EliminarOrganizador(int id)
         {
-            Organizador organizador = BuscarOrganizadorPorId(id);
-            var jsonBody = JsonConvert.SerializeObject(organizador);
-            var request = new RestRequest($"/eliminar", Method.Delete);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddStringBody(jsonBody, DataFormat.Json);
-
+            var request = new RestRequest($"/eliminar/{id}", Method.Delete);
             var response = _client.Execute(request);
 
             if (!response.IsSuccessful)

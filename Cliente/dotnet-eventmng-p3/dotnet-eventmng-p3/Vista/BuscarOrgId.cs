@@ -33,6 +33,7 @@ namespace dotnet_eventmng_p3.Vista
                 txtPresupuesto.Text = organizador.presupuesto.ToString();
                 txtFundacion.Text = organizador.fundacion.ToString();
                 txtCeo.Text = organizador.ceo;
+                txtFeriaId.Text = organizador.feriaGastroId.ToString();
             }
             catch (Exception ex)
             {

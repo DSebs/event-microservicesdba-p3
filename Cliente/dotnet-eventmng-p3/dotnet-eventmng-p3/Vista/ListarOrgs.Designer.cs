@@ -97,6 +97,7 @@
             // 
             // tblOrganizaciones
             // 
+            tblOrganizaciones.BackgroundColor = Color.White;
             tblOrganizaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblOrganizaciones.Location = new Point(35, 102);
             tblOrganizaciones.Name = "tblOrganizaciones";
@@ -118,6 +119,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(594, 524);
             Controls.Add(panel1);
             Controls.Add(btnListar);

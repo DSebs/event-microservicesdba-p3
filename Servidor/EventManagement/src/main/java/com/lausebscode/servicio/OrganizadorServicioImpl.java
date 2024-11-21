@@ -1,5 +1,6 @@
 package com.lausebscode.servicio;
 
+import com.lausebscode.dto.OrganizadorDTO;
 import com.lausebscode.modelo.FeriaGastro;
 import com.lausebscode.modelo.Organizador;
 import com.lausebscode.repositorio.FeriaGastroRepositorio;
@@ -59,6 +60,46 @@ public class OrganizadorServicioImpl implements OrganizadorServicio {
     public List<Organizador> listarTodosLosOrganizadores() {
         return organizadorRepositorio.findAll();
     }
+
+    @Override
+    public void eliminarOrganizadorPorId(int id) {
+        Organizador organizador = organizadorRepositorio.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No se encontró la Feria Gastronómica con ID: " + id));
+        organizadorRepositorio.delete(organizador);
+    }
+
+    //Metodos que devuelven DTO
+    // -----------------------------------------------------------------------------------------------------------
+    @Override
+    public List<OrganizadorDTO> listarTodosLosOrganizadoresDTO() {
+        List<Organizador> organizadores = listarTodosLosOrganizadores();
+        return organizadores.stream()
+                .map(this::mapearADTO)
+                .toList();
+    }
+
+    @Override
+    public OrganizadorDTO buscarPorIdDTO(int id) {
+        Organizador organizador = buscarPorId(id);
+        return mapearADTO(organizador);
+    }
+    @Override
+    public OrganizadorDTO buscarPorNombreDTO(String nombre) {
+        Organizador organizador = organizadorRepositorio.findByNombreIgnoreCase(nombre)
+                .orElseThrow(() -> new IllegalArgumentException("No se encontró un organizador con el nombre: " + nombre));
+        return mapearADTO(organizador);
+    }
+
+    @Override
+    public List<OrganizadorDTO> listarOrganizadoresInicial(String inicial) {
+        List<Organizador> organizadores = organizadorRepositorio.findByNombreStartingWithIgnoreCase(inicial);
+        return organizadores.stream()
+                .map(this::mapearADTO)
+                .toList();
+    }
+
+    // -----------------------------------------------------------
+
 
     @Override
     public List<Organizador> listarOrganizadoresPorInicial(String inicial) {
@@ -129,5 +170,16 @@ public class OrganizadorServicioImpl implements OrganizadorServicio {
         if (organizadorRepositorio.findByNombreIgnoreCase(organizador.getNombre()).isPresent()) {
             throw new IllegalArgumentException("Ya existe un Organizador con el nombre: " + organizador.getNombre());
         }
+    }
+
+    private OrganizadorDTO mapearADTO(Organizador organizador) {
+        OrganizadorDTO dto = new OrganizadorDTO();
+        dto.setId(organizador.getId());
+        dto.setNombre(organizador.getNombre());
+        dto.setPresupuesto(organizador.getPresupuesto());
+        dto.setFundacion(organizador.getFundacion());
+        dto.setCeo(organizador.getCeo());
+        dto.setFeriaGastroId(organizador.getFeriaGastro() != null ? organizador.getFeriaGastro().getId() : 0);
+        return dto;
     }
 }

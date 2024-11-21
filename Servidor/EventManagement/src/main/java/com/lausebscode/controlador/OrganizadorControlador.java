@@ -1,5 +1,6 @@
 package com.lausebscode.controlador;
 
+import com.lausebscode.dto.OrganizadorDTO;
 import com.lausebscode.modelo.Organizador;
 import com.lausebscode.servicio.OrganizadorServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,29 +28,29 @@ public class OrganizadorControlador {
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Organizador> buscarOrganizadorId(@PathVariable int id) {
+    public ResponseEntity<OrganizadorDTO> buscarOrganizadorId(@PathVariable int id) {
         try {
-            Organizador organizador = organizadorServicio.buscarPorId(id);
-            return ResponseEntity.ok(organizador);
+            OrganizadorDTO dto = organizadorServicio.buscarPorIdDTO(id);
+            return ResponseEntity.ok(dto);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/buscar/nombre/{nombre}")
-    public ResponseEntity<Organizador> buscarOrganizadorNombre(@PathVariable String nombre) {
+    public ResponseEntity<OrganizadorDTO> buscarOrganizadorPorNombre(@PathVariable String nombre) {
         try {
-            Organizador organizador = organizadorServicio.buscarPorNombre(nombre);
-            return ResponseEntity.ok(organizador);
+            OrganizadorDTO dto = organizadorServicio.buscarPorNombreDTO(nombre);
+            return ResponseEntity.ok(dto);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @DeleteMapping("/eliminar")
-    public ResponseEntity<Void> eliminarOrganizador(@RequestBody Organizador organizador) {
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> eliminarOrganizador(@PathVariable int id) {
         try {
-            organizadorServicio.eliminarOrganizador(organizador);
+            organizadorServicio.eliminarOrganizadorPorId(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
@@ -57,17 +58,21 @@ public class OrganizadorControlador {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<Organizador>> listarTodosLosOrganizadores() {
-        List<Organizador> organizadores = organizadorServicio.listarTodosLosOrganizadores();
-        return ResponseEntity.ok(organizadores);
+    public ResponseEntity<List<OrganizadorDTO>> listarTodosLosOrganizadores() {
+        try {
+            List<OrganizadorDTO> organizadores = organizadorServicio.listarTodosLosOrganizadoresDTO();
+            return ResponseEntity.ok(organizadores);
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/listar/inicial/{inicial}")
-    public ResponseEntity<List<Organizador>> listarOrganizadoresPorInicial(@PathVariable String inicial) {
+    public ResponseEntity<List<OrganizadorDTO>> listarOrganizadoresPorInicial(@PathVariable String inicial) {
         try {
-            List<Organizador> organizadores = organizadorServicio.listarOrganizadoresPorInicial(inicial);
+            List<OrganizadorDTO> organizadores = organizadorServicio.listarOrganizadoresInicial(inicial);
             return ResponseEntity.ok(organizadores);
-        } catch (IllegalArgumentException e) {
+        }catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
     }

@@ -43,6 +43,8 @@
             btnBuscar = new Button();
             lblSubtitulo = new Label();
             lblTitulo = new Label();
+            txtFeriaId = new TextBox();
+            lblFeriaId = new Label();
             panelPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,6 +52,8 @@
             // 
             panelPrincipal.BackColor = Color.FromArgb(240, 244, 255);
             panelPrincipal.BorderStyle = BorderStyle.FixedSingle;
+            panelPrincipal.Controls.Add(txtFeriaId);
+            panelPrincipal.Controls.Add(lblFeriaId);
             panelPrincipal.Controls.Add(txtFundacion);
             panelPrincipal.Controls.Add(txtCeo);
             panelPrincipal.Controls.Add(txtPresupuesto);
@@ -60,9 +64,9 @@
             panelPrincipal.Controls.Add(lblPresupuesto);
             panelPrincipal.Controls.Add(lblNombre);
             panelPrincipal.Controls.Add(lblId);
-            panelPrincipal.Location = new Point(66, 196);
+            panelPrincipal.Location = new Point(68, 187);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(402, 296);
+            panelPrincipal.Size = new Size(402, 316);
             panelPrincipal.TabIndex = 24;
             // 
             // txtFundacion
@@ -202,6 +206,25 @@
             lblTitulo.TabIndex = 25;
             lblTitulo.Text = "Buscar Organizador";
             // 
+            // txtFeriaId
+            // 
+            txtFeriaId.Enabled = false;
+            txtFeriaId.Location = new Point(222, 277);
+            txtFeriaId.Name = "txtFeriaId";
+            txtFeriaId.Size = new Size(145, 23);
+            txtFeriaId.TabIndex = 18;
+            // 
+            // lblFeriaId
+            // 
+            lblFeriaId.AutoSize = true;
+            lblFeriaId.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
+            lblFeriaId.ForeColor = Color.FromArgb(13, 55, 113);
+            lblFeriaId.Location = new Point(19, 272);
+            lblFeriaId.Name = "lblFeriaId";
+            lblFeriaId.Size = new Size(100, 28);
+            lblFeriaId.TabIndex = 17;
+            lblFeriaId.Text = "Feria ID";
+            // 
             // BuscarOrgNombre
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -238,5 +261,7 @@
         private Button btnBuscar;
         private Label lblSubtitulo;
         private Label lblTitulo;
+        private TextBox txtFeriaId;
+        private Label lblFeriaId;
     }
 }

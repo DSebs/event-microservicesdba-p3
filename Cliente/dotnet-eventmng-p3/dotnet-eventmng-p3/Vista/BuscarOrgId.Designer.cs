@@ -43,6 +43,8 @@
             lblPresupuesto = new Label();
             lblNombre = new Label();
             lblId = new Label();
+            txtFeriaId = new TextBox();
+            lblFeriaId = new Label();
             panelPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -92,6 +94,8 @@
             // 
             panelPrincipal.BackColor = Color.FromArgb(240, 244, 255);
             panelPrincipal.BorderStyle = BorderStyle.FixedSingle;
+            panelPrincipal.Controls.Add(txtFeriaId);
+            panelPrincipal.Controls.Add(lblFeriaId);
             panelPrincipal.Controls.Add(txtFundacion);
             panelPrincipal.Controls.Add(txtCeo);
             panelPrincipal.Controls.Add(txtPresupuesto);
@@ -104,7 +108,7 @@
             panelPrincipal.Controls.Add(lblId);
             panelPrincipal.Location = new Point(61, 182);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(402, 296);
+            panelPrincipal.Size = new Size(402, 330);
             panelPrincipal.TabIndex = 21;
             // 
             // txtFundacion
@@ -202,6 +206,25 @@
             lblId.TabIndex = 0;
             lblId.Text = "ID";
             // 
+            // txtFeriaId
+            // 
+            txtFeriaId.Enabled = false;
+            txtFeriaId.Location = new Point(222, 279);
+            txtFeriaId.Name = "txtFeriaId";
+            txtFeriaId.Size = new Size(145, 23);
+            txtFeriaId.TabIndex = 16;
+            // 
+            // lblFeriaId
+            // 
+            lblFeriaId.AutoSize = true;
+            lblFeriaId.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
+            lblFeriaId.ForeColor = Color.FromArgb(13, 55, 113);
+            lblFeriaId.Location = new Point(19, 274);
+            lblFeriaId.Name = "lblFeriaId";
+            lblFeriaId.Size = new Size(100, 28);
+            lblFeriaId.TabIndex = 15;
+            lblFeriaId.Text = "Feria ID";
+            // 
             // BuscarOrgId
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -238,5 +261,7 @@
         private Label lblPresupuesto;
         private Label lblNombre;
         private Label lblId;
+        private TextBox txtFeriaId;
+        private Label lblFeriaId;
     }
 }
