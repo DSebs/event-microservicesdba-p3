@@ -3,18 +3,40 @@ import { buscarFeriaGastroPorId, actualizarFeriaGastro } from '../../services/fe
 
 const ActualizarFeria = () => {
   const [id, setId] = useState('');
-  const [feria, setFeria] = useState({});
+  const [feria, setFeria] = useState({
+    nombre: '',
+    precio: '',
+    fechaRealizacion: '',
+    tipo: '',
+    organizadorIds: ''
+  });
   const [actualizado, setActualizado] = useState(false);
 
   const handleBuscar = async (e) => {
     e.preventDefault();
     try {
       const resultado = await buscarFeriaGastroPorId(id);
-      setFeria(resultado);
+      setFeria({
+        ...resultado,
+        organizadorIds: resultado.organizadorIds ? resultado.organizadorIds.join(',') : ''
+      });
       setActualizado(false);
     } catch (error) {
       alert('Error al buscar feria: ' + error.message);
     }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFeria(prev => ({
+      ...prev,
+      [name]: name === 'precio' ? parseFloat(value) : value
+    }));
+  };
+
+  const handleOrganizadoresIdsChange = (e) => {
+    const { value } = e.target;
+    setFeria(prev => ({ ...prev, organizadorIds: value }));
   };
 
   const handleActualizar = async (e) => {
@@ -23,21 +45,26 @@ const ActualizarFeria = () => {
       const tieneSegundos = feria.fechaRealizacion.split(":").length === 3;
       const fechaAjustada = tieneSegundos ? feria.fechaRealizacion : feria.fechaRealizacion + ":00";
 
-      const feriaAjustada = { ...feria, fechaRealizacion: fechaAjustada };
+      // Convertir organizadoresIds a array de números, permitiendo array vacío
+      const organizadorIdsArray = feria.organizadorIds.trim() !== '' 
+        ? feria.organizadorIds.split(',')
+            .map(id => id.trim())
+            .filter(id => id !== '')
+            .map(Number)
+            .filter(id => !isNaN(id))
+        : [];
+
+      const feriaAjustada = { 
+        ...feria, 
+        fechaRealizacion: fechaAjustada,
+        organizadorIds: organizadorIdsArray
+      };
 
       await actualizarFeriaGastro(id, feriaAjustada);
       setActualizado(true);
     } catch (error) {
       alert('Error al actualizar feria: ' + error.message);
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFeria(prev => ({
-      ...prev,
-      [name]: name === 'precio' ? parseFloat(value) : value // Convertir precio a número
-    }));
   };
 
   return (
@@ -63,7 +90,7 @@ const ActualizarFeria = () => {
                 </div>
               </form>
 
-              {feria && (
+              {feria && feria.nombre && (
                 <form className="mt-4" onSubmit={handleActualizar}>
                   <div className="mb-3">
                     <label htmlFor="nombre" className="form-label">Nombre</label>
@@ -115,6 +142,19 @@ const ActualizarFeria = () => {
                       value={feria.tipo}
                       onChange={handleChange}
                       required
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="organizadorIds" className="form-label">IDs de Organizadores</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="organizadorIds"
+                      name="organizadorIds"
+                      value={feria.organizadorIds}
+                      onChange={handleOrganizadoresIdsChange}
+                      placeholder="IDs separados por coma"
                     />
                   </div>
 

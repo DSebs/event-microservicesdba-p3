@@ -8,7 +8,14 @@ import BuscarFeriaGastroID from './components/feriagastro/BuscarFeriaPorId';
 import BuscarFeriaNombre from './components/feriagastro/BuscarFeriaPorNombre';
 import EliminarFeria from './components/feriagastro/EliminarFeria';
 import ListarFeria from './components/feriagastro/ListarFeria';
+import AgregarOrganizador from './components/organizadores/AgregarOrg';
+import ActualizarOrganizador from './components/organizadores/ActualizarOrg';
+import BuscarOrganizadorID from './components/organizadores/BuscarOrgPorId';
+import BuscarOrganizadorNombre from './components/organizadores/BuscarOrgPorNombre';
+import EliminarOrganizador from './components/organizadores/EliminarOrg';
+import ListarOrganizadores from './components/organizadores/ListarOrg';
 import AcercaDe from './components/ayuda/AcercaDe';
+
 
 function App() {
   return (
@@ -27,6 +34,14 @@ function App() {
                 <NavDropdown.Item as={Link} to="/eliminar-feria">Eliminar Feria</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/listar-feria">Listar Feria</NavDropdown.Item>
               </NavDropdown>
+              <NavDropdown title="Organizador" id="organizador-dropdown">
+                <NavDropdown.Item as={Link} to="/agregar-org">Agregar Organizacion</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/buscar-org-id">Buscar Organizacion Por ID</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/buscar-org-nombre">Buscar Organizacion Por Nombre</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/actualizar-org">Actualizar Organizacion</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/eliminar-org">Eliminar Organizacion</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/listar-org">Listar Organizacion</NavDropdown.Item>
+              </NavDropdown>
               <NavDropdown title="Ayuda" id="ayuda-dropdown">
                 <NavDropdown.Item as={Link} to="/acerca-de">Acerca de ...</NavDropdown.Item>
               </NavDropdown>
@@ -43,6 +58,12 @@ function App() {
         <Route path="/actualizar-feria" element={<ActualizarFeria />} />
         <Route path="/eliminar-feria" element={<EliminarFeria />} />
         <Route path="/listar-feria" element={<ListarFeria />} />
+        <Route path="/agregar-org" element={<AgregarOrganizador />} />
+        <Route path="/buscar-org-id" element={<BuscarOrganizadorID />} />
+        <Route path="/buscar-org-nombre" element={<BuscarOrganizadorNombre />} />
+        <Route path="/actualizar-org" element={<ActualizarOrganizador />} />
+        <Route path="/eliminar-org" element={<EliminarOrganizador />} />
+        <Route path="/listar-org" element={<ListarOrganizadores />} />
         <Route path="/acerca-de" element={<AcercaDe />} />
       </Routes>
     </Router>

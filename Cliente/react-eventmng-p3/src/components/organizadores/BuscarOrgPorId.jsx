@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { buscarFeriaGastroPorId } from '../../services/feriaGastroService';
+import { buscarOrganizadorPorId } from '../../services/organizadorService';
 
-const BuscarFeriaGastroID = () => {
+const BuscarOrganizadorID = () => {
   const [id, setId] = useState('');
-  const [feria, setFeria] = useState(null);
+  const [organizador, setOrganizador] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resultado = await buscarFeriaGastroPorId(id);
-      setFeria(resultado);
+      const resultado = await buscarOrganizadorPorId(id);
+      setOrganizador(resultado);
     } catch (error) {
-      alert('Error al buscar la feria: ' + error.message);
+      alert('Error al buscar organizador: ' + error.message);
     }
   };
 
@@ -21,7 +21,7 @@ const BuscarFeriaGastroID = () => {
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h2 className="card-title text-center mb-4">Buscar Feria por ID</h2>
+              <h2 className="card-title text-center mb-4">Buscar Organizador por ID</h2>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <input
@@ -37,15 +37,15 @@ const BuscarFeriaGastroID = () => {
                   <button type="submit" className="btn btn-primary">Buscar</button>
                 </div>
               </form>
-              {feria && (
+              {organizador && (
                 <div className="mt-4">
                   <h3>Resultado:</h3>
-                  <p>ID: {feria.id}</p>
-                  <p>Nombre: {feria.nombre}</p>
-                  <p>Precio: ${feria.precio}</p>
-                  <p>Fecha de Realización: {new Date(feria.fechaRealizacion).toLocaleDateString()}</p>
-                  <p>Tipo: {feria.tipo}</p>
-                  <p>IDs de Organizadores: {feria.organizadorIds ? feria.organizadorIds.join(', ') : 'Sin organizadores'}</p>
+                  <p>ID: {organizador.id}</p>
+                  <p>Nombre: {organizador.nombre}</p>
+                  <p>Presupuesto: ${organizador.presupuesto}</p>
+                  <p>Fecha de Fundación: {new Date(organizador.fundacion).toLocaleDateString()}</p>
+                  <p>CEO: {organizador.ceo}</p>
+                  <p>ID Feria Gastronómica: {organizador.feriaGastroId}</p>
                 </div>
               )}
             </div>
@@ -56,4 +56,4 @@ const BuscarFeriaGastroID = () => {
   );
 };
 
-export default BuscarFeriaGastroID;
+export default BuscarOrganizadorID;
