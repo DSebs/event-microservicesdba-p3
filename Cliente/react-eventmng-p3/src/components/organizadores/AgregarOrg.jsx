@@ -1,60 +1,45 @@
 import React, { useState } from 'react';
-import { agregarFeriaGastro } from '../../services/feriaGastroService';
+import { agregarOrganizador } from '../../services/organizadorService';
 
-const AgregarFeriaGastro = () => {
-  const [feria, setFeria] = useState({
+const AgregarOrganizador = () => {
+  const [organizador, setOrganizador] = useState({
     id: '',
     nombre: '',
-    precio: '',
-    fechaRealizacion: '',
-    tipo: '',
-    organizadorIds: ''
+    presupuesto: '',
+    fundacion: '',
+    ceo: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFeria(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleOrganizadorIdsChange = (e) => {
-    const { value } = e.target;
-    setFeria(prev => ({ ...prev, organizadorIds: value }));
+    setOrganizador(prev => ({ ...prev, [name]: name === 'presupuesto' ? parseFloat(value) : value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aseguramos que la fecha tiene el formato correcto (YYYY-MM-DDTHH:mm:ss)
-    const fechaAjustada = feria.fechaRealizacion.includes(":") ? feria.fechaRealizacion + ":00" : feria.fechaRealizacion;
-    
-    // Convertir organizadorIds a array de números, permitiendo array vacío
-    const organizadorIdsArray = feria.organizadorIds.trim() !== '' 
-      ? feria.organizadorIds.split(',')
-          .map(id => id.trim())
-          .filter(id => id !== '')
-          .map(Number)
-          .filter(id => !isNaN(id))
-      : [];
 
-    const feriaAjustada = { 
-      ...feria, 
-      fechaRealizacion: fechaAjustada,
-      organizadorIds: organizadorIdsArray
+    // Asegurarse de que la fecha de fundación tenga el formato correcto (YYYY-MM-DDTHH:mm:ss)
+    const fechaAjustada = organizador.fundacion.includes(":") ? organizador.fundacion + ":00" : organizador.fundacion;
+
+    const organizadorAjustado = {
+      ...organizador,
+      fundacion: fechaAjustada
     };
-  
+
     try {
-      await agregarFeriaGastro(feriaAjustada);
-      alert('Feria agregada exitosamente');
+      await agregarOrganizador(organizadorAjustado);
+      alert('Organizador agregado exitosamente');
+      
       // Limpiar el formulario después de agregar exitosamente
-      setFeria({
+      setOrganizador({
         id: '',
         nombre: '',
-        precio: '',
-        fechaRealizacion: '',
-        tipo: '',
-        organizadorIds: ''
+        presupuesto: '',
+        fundacion: '',
+        ceo: ''
       });
     } catch (error) {
-      alert('Error al agregar feria: ' + error.message);
+      alert('Error al agregar organizador: ' + error.message);
     }
   };
 
@@ -64,14 +49,14 @@ const AgregarFeriaGastro = () => {
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h2 className="card-title text-center mb-4">Agregar Feria</h2>
+              <h2 className="card-title text-center mb-4">Agregar Organizador</h2>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <input
                     type="number"
                     className="form-control"
                     name="id"
-                    value={feria.id}
+                    value={organizador.id}
                     onChange={handleChange}
                     placeholder="ID"
                     required
@@ -82,7 +67,7 @@ const AgregarFeriaGastro = () => {
                     type="text"
                     className="form-control"
                     name="nombre"
-                    value={feria.nombre}
+                    value={organizador.nombre}
                     onChange={handleChange}
                     placeholder="Nombre"
                     required
@@ -92,10 +77,11 @@ const AgregarFeriaGastro = () => {
                   <input
                     type="number"
                     className="form-control"
-                    name="precio"
-                    value={feria.precio}
+                    name="presupuesto"
+                    value={organizador.presupuesto}
                     onChange={handleChange}
-                    placeholder="Precio"
+                    placeholder="Presupuesto"
+                    step="0.1"
                     required
                   />
                 </div>
@@ -103,8 +89,8 @@ const AgregarFeriaGastro = () => {
                   <input
                     type="datetime-local"
                     className="form-control"
-                    name="fechaRealizacion"
-                    value={feria.fechaRealizacion}
+                    name="fundacion"
+                    value={organizador.fundacion}
                     onChange={handleChange}
                     required
                   />
@@ -113,20 +99,11 @@ const AgregarFeriaGastro = () => {
                   <input
                     type="text"
                     className="form-control"
-                    name="tipo"
-                    value={feria.tipo}
+                    name="ceo"
+                    value={organizador.ceo}
                     onChange={handleChange}
-                    placeholder="Tipo de comida"
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="organizadorIds"
-                    value={feria.organizadorIds}
-                    onChange={handleOrganizadorIdsChange}
-                    placeholder="IDs de organizadores (separados por coma)"
+                    placeholder="CEO"
+                    required
                   />
                 </div>
                 <div className="d-grid">
@@ -141,4 +118,4 @@ const AgregarFeriaGastro = () => {
   );
 };
 
-export default AgregarFeriaGastro;
+export default AgregarOrganizador;

@@ -22,10 +22,9 @@ export const actualizarFeriaGastro = async (id, feria) => {
   return response.data;
 };
 
-export const eliminarFeriaGastro = async (feria) => {
-    await axios.delete(`${API_URL}/eliminar`, { data: feria });
-  };
-
+export const eliminarFeriaGastro = async (id) => {
+  await axios.delete(`${API_URL}/eliminar/${id}`);
+};  
 export const listarFeriaGastro = async () => {
   const response = await axios.get(`${API_URL}/listar`);
   return response.data;

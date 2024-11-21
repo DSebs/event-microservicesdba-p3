@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
 import { listarFeriaGastro, listarFeriaGastroPorPrecio } from '../../services/feriaGastroService';
 
-const ListarFeria = () => {
+  const ListarFeria = () => {
   const [ferias, setFerias] = useState([]);
   const [precioMax, setPrecioMax] = useState('');
   const [error, setError] = useState('');
 
-  // Manejador para listar todas las ferias
   const handleListar = async () => {
     try {
       const resultado = await listarFeriaGastro();
       setFerias(resultado);
-      setError(''); // Reinicia el estado de error
+      setError('');
     } catch (error) {
       setError('Error al listar ferias: ' + error.message);
     }
   };
 
-  // Manejador para filtrar ferias por precio máximo
   const handleFiltrar = async (e) => {
     e.preventDefault();
     try {
       const resultado = await listarFeriaGastroPorPrecio(precioMax);
       setFerias(resultado);
-      setError(''); // Reinicia el estado de error
+      setError('');
     } catch (error) {
       setError('Error al filtrar ferias: ' + error.message);
     }
@@ -37,14 +35,12 @@ const ListarFeria = () => {
             <div className="card-body">
               <h2 className="card-title text-center mb-4">Listar Ferias</h2>
 
-              {/* Botón para listar todas las ferias */}
               <div className="d-grid mb-3">
                 <button onClick={handleListar} className="btn btn-primary">
                   Listar Todas las Ferias
                 </button>
               </div>
 
-              {/* Sección para filtrar por precio máximo */}
               <form onSubmit={handleFiltrar} className="mb-4">
                 <div className="input-group">
                   <input
@@ -61,14 +57,12 @@ const ListarFeria = () => {
                 </div>
               </form>
 
-              {/* Mensaje de error si ocurre algún problema */}
               {error && (
                 <div className="alert alert-danger" role="alert">
                   {error}
                 </div>
               )}
 
-              {/* Tabla para mostrar las ferias */}
               {ferias.length > 0 && (
                 <table className="table table-striped mt-4">
                   <thead>
@@ -78,6 +72,7 @@ const ListarFeria = () => {
                       <th>Precio</th>
                       <th>Fecha de Realización</th>
                       <th>Tipo</th>
+                      <th>Organizadores</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -88,6 +83,7 @@ const ListarFeria = () => {
                         <td>{feria.precio}</td>
                         <td>{new Date(feria.fechaRealizacion).toLocaleDateString()}</td>
                         <td>{feria.tipo}</td>
+                        <td>{feria.organizadorIds.join(', ')}</td>
                       </tr>
                     ))}
                   </tbody>

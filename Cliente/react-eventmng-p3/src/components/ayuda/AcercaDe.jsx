@@ -24,7 +24,7 @@ const AcercaDe= () => {
               <h4>Sebastian Diaz</h4>
             </div>
           </div>
-          <p className="text-center mt-3">Versión 5.0</p>
+          <p className="text-center mt-3">Versión 6.0</p>
         </div>
       </div>);
 
